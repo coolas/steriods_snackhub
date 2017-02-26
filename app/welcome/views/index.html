@@ -1,0 +1,13 @@
+<div class="padding" ng-controller="IndexController">
+	<center><h1>Welcome to Snackhub</h1></center>
+
+	<div class="button-bar" ng-show="currentPage == 'welcome'">
+		<a class="button" ng-click="showLogin()">Login</a>
+		<a class="button" ng-click="showRegister()">Register</a>
+	</div>
+
+	<div ng-include="'_login.html'" ng-show="currentPage == 'login'" id="login-page"></div>
+	<div ng-include="'_register.html'" ng-show="currentPage == 'register'" id="register-page"></div>
+
+
+</div>

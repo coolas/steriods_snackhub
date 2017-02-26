@@ -1,0 +1,19 @@
+<div class="list card" ng-controller="ShowController">
+
+  <div class="item">
+    <img class="full-image" src="mcfly.jpg">
+  </div>
+
+  <div class="item item-body">
+    <h2>{{item.name}}</h2>
+    <p>{{item.description}}</p>
+  </div>
+
+  <div class="item">
+    I'm a Footer in a Card!
+    <button class="button button-block button-positive" ng-click="addToBasket(item.id, 1)">
+      Add to Basket
+    </button>
+  </div>
+
+</div>
