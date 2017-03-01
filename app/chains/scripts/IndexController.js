@@ -1,7 +1,7 @@
 angular
   .module('chains')
   .controller('IndexController', function($scope, supersonic, ChainService) { 
-  		var mall_id = 30;//steroids.view.params["id"];
+  		var mall_id = steroids.view.params["id"];
 
   		ChainService.fetchChains(mall_id).then((function(resp){
   			return $scope.chains = resp;

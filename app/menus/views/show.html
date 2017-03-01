@@ -1,8 +1,8 @@
 <div ng-controller="ShowController">
-	<h1>Chain Name</h1>
+	<h1>{{chain.name}}</h1>
 	<div class="list">
-		<a class="item" ng-repeat="menuItem in menuItems" ng-click="showMenuItem(menuItem.id)">
-			<h2>{{menuItem.name}}</h2>
+		<a class="item" ng-repeat="item in items" ng-click="showItem(item.id)">
+			<h2>{{item.name}}</h2>
 		</a>
 	</div>
 </div>

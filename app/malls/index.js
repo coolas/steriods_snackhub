@@ -1,7 +1,5 @@
-angular.module('menus', [
+angular.module('malls', [
   // Declare here all AngularJS dependencies that are shared by the example module.
   'supersonic',
-  'ChainMethods',
-  'MenuMethods',
-  'ItemMethods'
+  'common'
 ]);

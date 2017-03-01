@@ -10,14 +10,18 @@ module.factory('AuthService', function(Restangular, $localStorage){
 				password: password
 			}).then((function(resp){
 				$localStorage.user = resp;
-				alert(JSON.stringify(resp));
-				window.postMessage({
-					message: 'userHasLoggedIn',
-					user: resp
-				});
-				if(callback){
-					return callback();
-				}
+				
+				var webView = new steroids.views.WebView("app/malls/index.html");
+				steroids.layers.push(webView);
+
+				//window.postMessage({
+				//	message: 'userHasLoggedIn',
+				//	user: resp
+				//});
+				//if(callback){
+				//	return callback();
+				//}
+
 			}), function(resp) {
 				console.log('error', resp);
 				return ('Invalid email or password');

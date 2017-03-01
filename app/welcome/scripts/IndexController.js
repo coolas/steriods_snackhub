@@ -18,10 +18,9 @@ angular
 		}
 
 		$scope.login = function() {
-			alert("was here")
 			AuthService.login($scope.email, $scope.password, (function(_this){
 				return function(resp){
-
+					
 				};
 			})(this));
 			return
