@@ -10,9 +10,12 @@ module.factory('AuthService', function(Restangular, $localStorage){
 				password: password
 			}).then((function(resp){
 				$localStorage.user = resp;
-				
-				var webView = new steroids.views.WebView("app/malls/index.html");
-				steroids.layers.push(webView);
+				// initialize order items
+				$localStorage.user.items = [];
+
+				steroids.layers.popAll();
+				var webView = new steroids.views.WebView("app/orders/new.html");
+				steroids.layers.push({view: webView, navigationBar: false});
 
 				//window.postMessage({
 				//	message: 'userHasLoggedIn',
@@ -27,6 +30,13 @@ module.factory('AuthService', function(Restangular, $localStorage){
 				return ('Invalid email or password');
 			});
 		},
+
+		logout: function() {
+			$localStorage.$rest({
+				user: null,
+				hasBeenHere: true
+			}); 
+		}
 
 		// logout: function() {
 		// 	$localStorage.$rest({

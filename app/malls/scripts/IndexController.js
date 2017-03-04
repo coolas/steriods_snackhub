@@ -8,6 +8,7 @@ angular
   		});
 
     	$scope.showChains = function(id) {
+        $localStorage.user.mall_id = id;
     		var webView = new steroids.views.WebView("app/chains/index.html?id=" + id);
     		steroids.layers.push(webView);
     		return;

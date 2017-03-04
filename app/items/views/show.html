@@ -1,19 +1,36 @@
-<div class="list card" ng-controller="ShowController">
-
-  <div class="item">
-    <img class="full-image" src="mcfly.jpg">
+<div ng-controller="ShowController">
+  <div class="bar bar-header bar-assertive">
+      <button class="button button-icon icon super-chevron-left" ng-click="goBack()"></button>
+      <div class="h1 title">{{item.name}}</div>
   </div>
+  <div class="content has-header">
+    <div class="list card">
+      <div class="item">
+        <img class="full-image" src="mcfly.jpg">
+      </div>
 
-  <div class="item item-body">
-    <h2>{{item.name}}</h2>
-    <p>{{item.description}}</p>
+      <div class="item item-body">
+        <h2>{{item.name}}</h2>
+        <p>{{item.description}}</p>
+        <h2 class="text-right">P{{item.price}}</h2>
+      </div>
+
+      <div class="item">
+        <label class="item item-input">
+          <span class="input-label">Quantity</span>
+          <input class="pull-right" type="number" ng-model="item.quantity" placeholder="0">
+        </label>
+      </div>
+
+      <div class="item">
+        <h2>Subtotal <span>{{item.price * item.quantity}}</span></h2>
+      </div>
+
+      <div class="item">
+        <button class="button button-block button-assertive" ng-click="addToBag(item.id, item.quantity, item.price * item.quantity, item.name, item.menu_id)">
+          Add to Bag
+        </button>
+      </div>
+    </div>
   </div>
-
-  <div class="item">
-    I'm a Footer in a Card!
-    <button class="button button-block button-positive" ng-click="addToBasket(item.id, 1)">
-      Add to Basket
-    </button>
-  </div>
-
 </div>

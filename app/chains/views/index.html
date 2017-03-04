@@ -1,25 +1,13 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-
-<div class="bar bar-header bar-assertive">
-  <h1 class="title">Choose Chain</h1>
-</div>
-
 <div ng-controller="IndexController">
-	<div class="list">
-		<h2>&nbsp;</h2>
-		<a class="item" ng-repeat="chain in chains" ng-click="showMenu(chain.id)">
-		<h2>{{chain.name}}</h2>
-		</a>
+	<div class="bar bar-header bar-assertive">
+      <button class="button button-icon icon super-chevron-left" ng-click="goBack()"></button>
+      <div class="h1 title">Choose Chain</div>
+  	</div>
+	<div class="content has-header">
+		<div class="list">
+			<a class="item" ng-repeat="chain in chains" ng-click="showMenu(chain.id)">
+				<h2>{{chain.name}}</h2>
+			</a>
+		</div>
 	</div>
 </div>
-
-
-</body>
-</html>
-

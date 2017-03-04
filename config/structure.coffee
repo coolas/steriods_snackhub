@@ -18,6 +18,13 @@ module.exports =
     }
   ]
 
+  drawers:
+    right:
+      id: "rightDrawer"
+      location: "account#drawer"
+      showOnAppLoad: false
+    options:
+      animation: "slide"
   # drawers:
   #   left:
   #     id: "leftDrawer"

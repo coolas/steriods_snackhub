@@ -1,8 +1,19 @@
 <div ng-controller="ShowController">
-	<h1>{{chain.name}}</h1>
-	<div class="list">
-		<a class="item" ng-repeat="item in items" ng-click="showItem(item.id)">
-			<h2>{{item.name}}</h2>
-		</a>
+	<div class="bar bar-header bar-assertive">
+      <button class="button button-icon icon super-chevron-left" ng-click="goBack()"></button>
+      <div class="h1 title">{{chain.name}}</div>
+  	</div>
+	<div class="content has-header">
+		<div class="list">
+			<a class="item" ng-repeat="item in items" ng-click="showItem(item.id)">
+				<h2>{{item.name}}</h2>
+			</a>
+		</div>
+	</div>
+
+	<div class="bar bar-footer bar-assertive" ng-if="bagCount">
+		<div class="button-bar">
+			<button class="button button-clear" ng-click="checkout()">View Your Bag</button>
+		</div>
 	</div>
 </div>

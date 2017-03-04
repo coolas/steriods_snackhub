@@ -1,0 +1,54 @@
+<div ng-controller="NewController">
+	<div ng-show="!showCheckout">
+		<div class="bar bar-header bar-assertive">
+		  <div class="h1 title">Choose Mall</div>
+		  <button class="button button-icon icon super-navicon-round" ng-click="supersonic.ui.drawers.open()"></button>
+		</div>
+		<div class="content has-header">
+			<div class="list">
+				<a class="item" ng-repeat="mall in malls" ng-click="showChains(mall.id)">
+					<h2>{{mall.name}}</h2>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div ng-show="showCheckout">
+		<div class="bar bar-header bar-assertive">
+	      <button class="button button-icon icon super-chevron-left" ng-click="goBack()"></button>
+	      <div class="h1 title">Your Bag</div>
+	 	</div>
+	
+		<div class="content has-header">
+			<div class="row">
+				<div class="col"><strong>Item</strong></div>
+				<div class="col text-right"><strong>Qty</strong></div>
+				<div class="col text-right"><strong>Price</strong></div>
+				<div class="col"></div>
+			</div>
+			<div class="row" ng-repeat="orderItem in orderItems">
+				<div class="col">
+					{{orderItem.name}}
+				</div>
+				<div class="col text-right">
+					{{orderItem.quantity}}
+				</div>
+				<div class="col text-right">
+					{{orderItem.subtotal}}
+				</div>
+				<div class="col"></div>
+			</div>
+			<div class="row">
+				<div class="col"></div>
+				<div class="col text-right"><strong>Total</strong></div>
+				<div class="col text-right"><strong>{{orderTotal}}</strong></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="bar bar-footer bar-assertive" ng-show="showCheckout">
+		<div class="button-bar">
+			<button class="button button-clear" ng-click="payment()">Proceed to Payment</button>
+		</div>
+	</div>
+</div>

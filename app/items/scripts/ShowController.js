@@ -1,26 +1,41 @@
 angular
   .module('items')
-  .controller('ShowController', function($scope, supersonic, ItemService) {
+  .controller('ShowController', function($scope, $localStorage, supersonic, ItemService) {
+    steroids.view.navigationBar.hide();
+
   	var item_id = steroids.view.params["id"];
+
+    $scope.bagCount = $localStorage.user.items.length;
 
   	// Fetch menuItem given the id (API)
   	ItemService.fetchItem(item_id).then((function(resp){
-  		return $scope.item = resp;
+      $scope.item = resp;
+      $scope.item.quantity = 1;
+  		return $scope.item;
   	}), function(resp){
   		return console.log("error", resp);
   	});
 
-	// window.localStorage["orderItems"] = [];
+  	$scope.addToBag = function(id, quantity, subtotal, name, menu_id) {
 
-	// $scope.addToBasket = function(id, quantity, chainId) {
+      console.log(id + " " + quantity + " " + subtotal + " " + name + " " + menu_id);
+      $localStorage.user.items.push({id: id, quantity: quantity, subtotal: subtotal, name: name});
+      $scope.bagCount = $localStorage.user.items.length;
+      
+  		var webView = new steroids.views.WebView("app/menus/show.html?id=" + menu_id);
+  		steroids.layers.push({view: webView, navigationBar: false});
+  		return;
+  	};
 
-	// 	alert(window.localStorage["orderItems"]);
-	// 	window.localStorage["orderItems"] = "hi";
-	// 	alert(window.localStorage["orderItems"]);
+    $scope.goBack = function() {
+      steroids.layers.pop();
+      return;
+    };
 
-	// 	var webView = new steroids.views.WebView("app/menus/show.html?chainId=" + 1);
-	// 	steroids.layers.push(webView);
-	// 	return;
-	// };
+    $scope.checkout = function() {
+      var webView = new steroids.views.WebView("app/orders/new.html");
+      steroids.layers.push({view: webView, navigationBar: false});
+      return;
+    };
 
   });

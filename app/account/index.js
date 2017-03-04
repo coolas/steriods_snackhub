@@ -1,6 +1,5 @@
-angular.module('items', [
+angular.module('account', [
   // Declare here all AngularJS dependencies that are shared by the example module.
   'supersonic',
-  'common',
-  'ItemMethods'
+  'common'
 ]);
