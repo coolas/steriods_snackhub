@@ -1,7 +1,15 @@
 angular
   .module('orders')
-  .controller('ShowController', function($scope, supersonic) {
+  .controller('ShowController', function($scope, $localStorage, supersonic, OrderService) {
   	var orderId = steroids.view.params["id"];
+
+  	// Fetch Order given the id (API)
+  	OrderService.fetchOrder(orderId).then((function(resp){
+      $scope.order = resp;
+  	  return $scope.order;
+  	}), function(resp){
+  		return console.log("error", resp);
+  	});
 
   	// Fetch menuItem given the id (API)
  //  	$scope.orderId = {

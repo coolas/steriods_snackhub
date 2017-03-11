@@ -8,6 +8,7 @@ angular.module('common', [
   'MenuMethods',
   'ItemMethods',
   'OrderMethods',
+  'OrderItemMethods',
   'ngStorage'
 ]);
 

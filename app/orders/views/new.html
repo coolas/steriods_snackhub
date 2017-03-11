@@ -1,5 +1,5 @@
 <div ng-controller="NewController">
-	<div ng-show="!showCheckout">
+	<div ng-show="!showCheckout && !showCinema && !showPayment">
 		<div class="bar bar-header bar-assertive">
 		  <div class="h1 title">Choose Mall</div>
 		  <button class="button button-icon icon super-navicon-round" ng-click="supersonic.ui.drawers.open()"></button>
@@ -46,9 +46,76 @@
 		</div>
 	</div>
 
+	<div ng-show="showCinema">
+		<div class="bar bar-header bar-assertive">
+	      <button class="button button-icon icon super-chevron-left" ng-click="proceedToCheckout()"></button>
+	      <div class="h1 title">Enter Cinema Details</div>
+	 	</div>
+
+	 	<div class="content has-header">
+	 		<div class="item">
+				<input type="text" placeholder="Cinema Number" ng-model="order.cinema_number">
+			</div>
+			<div class="item">
+				<input type="text" placeholder="Remarks" ng-model="order.remarks">
+			</div>
+			<div class="item">
+				<input type="text" placeholder="Contact Number" ng-model="order.contact_number">
+			</div>
+	 	</div>
+	</div>
+
+	<div ng-show="showPayment">
+		<div class="bar bar-header bar-assertive">
+	      <button class="button button-icon icon super-chevron-left" ng-click="proceedToCinema()"></button>
+	      <div class="h1 title">Enter Payment Details</div>
+	 	</div>
+
+	 	<div class="content has-header">
+	 		<div class="item">
+				<input type="number" placeholder="Credit Card Number" ng-model="payment.credit_card_number">
+			</div>
+
+			<div class="item">
+				<input type="text" placeholder="Credit Card Type" ng-model="payment.credit_card_type">
+			</div>
+
+			<div class="item">
+				<input type="number" placeholder="Expiry Month" ng-model="payment.expiry_month">
+			</div>
+
+			<div class="item">
+				<input type="number" placeholder="Expiry Year" ng-model="payment.expiry_year">
+			</div>
+
+			<div class="item">
+				<input type="number" placeholder="CVV" ng-model="payment.cvv">
+			</div>
+
+			<div class="item">
+				<input type="text" placeholder="Credit Card Holder First Name" ng-model="payment.first_name">
+			</div>
+			<div class="item">
+				<input type="text" placeholder="Credit Card Holder Last Name" ng-model="payment.last_name">
+			</div>
+	 	</div>
+	</div>
+
 	<div class="bar bar-footer bar-assertive" ng-show="showCheckout">
 		<div class="button-bar">
-			<button class="button button-clear" ng-click="payment()">Proceed to Payment</button>
+			<button class="button button-clear" ng-click="proceedToCinema()">Proceed to Cinema Details</button>
+		</div>
+	</div>
+
+	<div class="bar bar-footer bar-assertive" ng-show="showCinema">
+		<div class="button-bar">
+			<button class="button button-clear" ng-click="proceedToPayment()">Proceed to Payment</button>
+		</div>
+	</div>
+
+	<div class="bar bar-footer bar-assertive" ng-show="showPayment">
+		<div class="button-bar">
+			<button class="button button-clear" ng-click="makePayment()">Pay Now</button>
 		</div>
 	</div>
 </div>
