@@ -159,15 +159,29 @@ angular
         OrderService.createOrder($scope.order).then((function(resp){
         //OrderRestangular.one('api/orders').customPOST(order).then((function(resp){
           //var order_id = 1
+          var items=$localStorage.user.items;
 
-          for(var item in $localStorage.user.items){
-            alert(JSON.stringify(item));
+          // for(var item in $localStorage.user.items){
+          //   alert(JSON.stringify(item));
+          //   var order_item_entry = {
+          //     order_id: resp.id,
+          //     item_id: item.id,
+          //     quantity: item.quantity,
+          //     subtotal: item.subtotal,
+          //     name: item.name
+          //   }
+          //   OrderItemService.createOrderItem(order_item_entry).then((function(resp){
+
+          //   }), function(resp){
+          //   });
+          // }
+          for(var i = 0; i < items.length; i++) {
             var order_item_entry = {
               order_id: resp.id,
-              item_id: item.id,
-              quantity: item.quantity,
-              subtotal: item.subtotal,
-              name: item.name
+              item_id: items[i]["id"],
+              quantity: items[i]["quantity"],
+              subtotal: items[i]["subtotal"],
+              name: items[i]["name"]
             }
             OrderItemService.createOrderItem(order_item_entry).then((function(resp){
 
@@ -175,6 +189,7 @@ angular
               // error
             });
           }
+
 
           $localStorage.user.items = [];
           var webView = new steroids.views.WebView("app/orders/show.html?id=" + resp.id);
