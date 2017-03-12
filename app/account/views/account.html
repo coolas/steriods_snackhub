@@ -1,0 +1,15 @@
+<!-- <script>
+  document.addEventListener("touchmove", function(e){
+    e.preventDefault();
+  });
+</script> -->
+<div ng-controller="AccountController">
+	<ul class="list">
+  		<li class="item" onclick="supersonic.ui.drawers.close()">Home</li>
+  		<li class="item"></li>
+  		{{email}}
+  		{{first_name}}
+  		<li class ="item" ng-click="showHistory()">Order History</li>
+  		<button class="button button-block" ng-click="logout()"> Logout </button>
+	</ul>
+</div>

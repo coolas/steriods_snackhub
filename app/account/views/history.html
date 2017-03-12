@@ -1,0 +1,13 @@
+<div ng-controller="HistoryController">
+	<div class="bar bar-header bar-assertive">
+      <button class="button button-icon icon super-chevron-left" ng-click="goBack()"></button>
+      <div class="h1 title">Order History</div>
+  	</div>
+	<div class="content has-header">
+		<div class="list">
+			<a class="item" ng-repeat="order in orders" ng-click="showOrder(order.id)">
+				<h2>{{order.reference_number}}</h2>
+			</a>
+		</div>
+	</div>
+</div>

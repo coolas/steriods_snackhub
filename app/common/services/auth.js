@@ -10,6 +10,37 @@ module.factory('AuthService', function(Restangular, $localStorage){
 				password: password
 			}).then((function(resp){
 				$localStorage.user = resp;
+				alert(JSON.stringify(resp));
+				// initialize order items
+				$localStorage.user.items = [];
+
+				steroids.layers.popAll();
+				var webView = new steroids.views.WebView("app/orders/new.html");
+				steroids.layers.push({view: webView, navigationBar: false});
+
+				//window.postMessage({
+				//	message: 'userHasLoggedIn',
+				//	user: resp
+				//});
+				//if(callback){
+				//	return callback();
+				//}
+
+			}), function(resp) {
+				console.log('error', resp);
+				return ('Invalid email or password');
+			});
+		},
+
+		register: function(user) {
+			return Restangular.oneUrl('register', BASE_URL + '/api/v1/auth').customPOST({
+				email: user.email,
+				password: user.password,
+				first_name: user.first_name,
+				last_name: user.last_name
+			}).then((function(resp){
+				$localStorage.user = resp;
+				//alert(JSON.stringify(resp));
 				// initialize order items
 				$localStorage.user.items = [];
 
@@ -32,10 +63,11 @@ module.factory('AuthService', function(Restangular, $localStorage){
 		},
 
 		logout: function() {
-			$localStorage.$rest({
-				user: null,
-				hasBeenHere: true
-			}); 
+			$localStorage.user=null;
+			// $localStorage.$rest({
+			// 	user: null,
+			// 	hasBeenHere: true
+			// }); 
 		}
 
 		// logout: function() {

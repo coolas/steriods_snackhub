@@ -1,6 +1,7 @@
 <div class="padding" ng-controller="IndexController">
-	<center><h1>Welcome to Snackhub</h1></center>
-
+	<div class="item-image">
+    	<img src="/images/logo.jpg">
+  	</div>
 	<div ng-include="'_login.html'" ng-show="currentPage == 'login'" id="login-page"></div>
 	<div ng-include="'_register.html'" ng-show="currentPage == 'register'" id="register-page"></div>
 

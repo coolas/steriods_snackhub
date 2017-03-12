@@ -9,5 +9,18 @@
  		<p>{{order.cinema_number}}</p>
  		<p>{{order.remarks}}</p>
  		<p>{{order.contact_number}}</p>
+
+ 		 <div class="row" ng-repeat="item in order_items">
+				<div class="col">
+					{{item.name}}
+				</div>
+				<div class="col text-right">
+					{{item.quantity}}
+				</div>
+				<div class="col text-right">
+					{{iqtem.subtotal}}
+				</div>
+				<div class="col"></div>
+		</div>
  	</div>
 </div>

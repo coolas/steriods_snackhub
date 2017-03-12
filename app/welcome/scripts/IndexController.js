@@ -25,4 +25,13 @@ angular
 			})(this));
 			return
 		}
+
+		$scope.register = function() {
+			AuthService.register($scope.user, (function(_this){
+				return function(resp){
+					alert(JSON.stringify(resp));
+				};
+			})(this));
+			return
+		}
 	});
