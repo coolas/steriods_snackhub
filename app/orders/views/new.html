@@ -2,7 +2,7 @@
 	<div ng-show="!showCheckout && !showCinema && !showPayment">
 		<div class="bar bar-header bar-assertive">
 		  <div class="h1 title">Choose Mall</div>
-		  <button class="button button-icon icon super-navicon-round" ng-click="showAccount()"></button>
+		  <button class="button button-icon icon super-ion-person" ng-click="showAccount()"></button>
 		</div>
 		<div class="content has-header">
 			<div class="list">
@@ -36,7 +36,7 @@
 				<div class="col text-right">
 					{{orderItem.subtotal}}
 				</div>
-				<div class="col"></div>
+				<div class="col"><button type="button" class="button" ng-click="removeFromBag(orderItem);">Remove</button></div>
 			</div>
 			<div class="row">
 				<div class="col"></div>
@@ -72,6 +72,10 @@
 	 	</div>
 
 	 	<div class="content has-header">
+	 		<div class="item " ng-if="errors">
+	 			<h4 class="assertive text-center">{{errors}}</h4>
+	 		</div>
+
 	 		<div class="item">
 				<input type="number" placeholder="Credit Card Number" ng-model="payment.credit_card_number">
 			</div>
@@ -101,7 +105,7 @@
 	 	</div>
 	</div>
 
-	<div class="bar bar-footer bar-assertive" ng-show="showCheckout">
+	<div class="bar bar-footer bar-assertive" ng-show="showCheckout && orderTotal > 0">
 		<div class="button-bar">
 			<button class="button button-clear" ng-click="proceedToCinema()">Proceed to Cinema Details</button>
 		</div>

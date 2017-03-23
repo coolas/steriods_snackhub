@@ -13,4 +13,9 @@ angular
      	 steroids.layers.push({view: webView, navigationBar: false});
      	 return;
 		};
+
+	    $scope.goBack = function() {
+	      steroids.layers.pop();
+	      return;
+	    };
 	});

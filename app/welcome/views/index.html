@@ -1,19 +1,15 @@
 <div class="padding" ng-controller="IndexController">
 	<div class="item-image">
-    	<img src="/images/logo.jpg">
+    	<img src="/images/welcomelogo.png">
   	</div>
 	<div ng-include="'_login.html'" ng-show="currentPage == 'login'" id="login-page"></div>
 	<div ng-include="'_register.html'" ng-show="currentPage == 'register'" id="register-page"></div>
 
-	<div class="bar bar-footer bar-assertive">
-		<div class="button-bar" ng-show="currentPage == 'welcome'">
+
+	<div class="bar bar-footer bar-assertive" ng-show="currentPage == 'welcome'">
+		<div class="button-bar">
 			<button class="button button-clear" ng-click="showLogin()">Login</button>
 			<button class="button button-clear" ng-click="showRegister()">Register</button>
 		</div>
-
-		<div class="button-bar" ng-show="currentPage != 'welcome'">
-			<button class="button button-clear" ng-click="showWelcome()">Back</button>
-		</div>
 	</div>
-
 </div>

@@ -2,10 +2,12 @@
 	<div class="bar bar-header bar-assertive">
       <button class="button button-icon icon super-chevron-left" ng-click="goBack()"></button>
       <div class="h1 title">Choose Chain</div>
+      <button class="button button-icon icon super-person" ng-click="showAccount()"></button>
   	</div>
 	<div class="content has-header">
 		<div class="list">
-			<a class="item" ng-repeat="chain in chains" ng-click="showMenu(chain.id)">
+			<a class="item item-avatar" ng-repeat="chain in chains" ng-click="showMenu(chain.id)">
+				<img src ="{{chain.chain_logo.url}}">
 				<h2>{{chain.name}}</h2>
 			</a>
 		</div>

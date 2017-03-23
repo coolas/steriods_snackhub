@@ -1,15 +1,21 @@
-<!-- <script>
-  document.addEventListener("touchmove", function(e){
-    e.preventDefault();
-  });
-</script> -->
 <div ng-controller="AccountController">
-	<ul class="list">
-  		<li class="item" onclick="supersonic.ui.drawers.close()">Home</li>
-  		<li class="item"></li>
-  		{{email}}
-  		{{first_name}}
-  		<li class ="item" ng-click="showHistory()">Order History</li>
-  		<button class="button button-block" ng-click="logout()"> Logout </button>
-	</ul>
+  <div class="bar bar-header bar-assertive">
+      <button class="button button-icon icon super-chevron-left" ng-click="goBack()"></button>
+      <div class="h1 title">My Account</div>
+    </div>
+  <div class="content has-header">
+    <div class="item">
+      <h4>{{email}}</h4>
+      <p>{{first_name}} {{last_name}}</p>
+    </div>
+    <div class="list">
+      <a class="item">
+        <h2>Home</h2>
+      </a>
+      <a class="item" ng-click="showHistory()">
+        <h2>Order History</h2>
+      </a>
+      <button class="button button-block button-assertive" ng-click="logout()"> Logout </button>
+    </div>
+  </div>
 </div>

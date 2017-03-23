@@ -6,6 +6,7 @@
     "angular": "1.3.x",
     "supersonic": "1.x",
     "restangular": "^1.6.1",
-    "ngstorage": "^0.3.11"
+    "ngstorage": "^0.3.11",
+    "ionic": "driftyco/ionic-bower#v1.1.1"
   }
 }

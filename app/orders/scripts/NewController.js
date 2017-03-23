@@ -9,8 +9,11 @@ angular
       OrderItemService, 
   		MallService){
 
+    $scope.errors = "";
+
     $scope.order = {
-      user_id: $localStorage.user.data["id"]
+      user_id: $localStorage.user.data["id"],
+      chain_id: $localStorage.user.data["chain_id"]
     };
 
     $scope.payment = {};
@@ -64,7 +67,7 @@ angular
       $scope.showCinema = true;
       $scope.showPayment = false;
 
-      alert(JSON.stringify($localStorage.user.items));
+      //alert(JSON.stringify($localStorage.user.items));
     }
 
     $scope.proceedToPayment = function() {
@@ -158,6 +161,7 @@ angular
         //   }]
         //},
       }).success(function (result) {
+        
         console.log(JSON.stringify(result));
 
         $scope.order.total = $scope.orderTotal;
@@ -165,7 +169,7 @@ angular
         OrderService.createOrder($scope.order).then((function(resp){
         //OrderRestangular.one('api/orders').customPOST(order).then((function(resp){
           //var order_id = 1
-          var items=$localStorage.user.items;
+          var items = $localStorage.user.items;
 
           // for(var item in $localStorage.user.items){
           //   alert(JSON.stringify(item));
@@ -198,6 +202,7 @@ angular
 
 
           $localStorage.user.items = [];
+          $scope.errors = [];
           var webView = new steroids.views.WebView("app/orders/show.html?id=" + resp.id);
           steroids.layers.push({view: webView, navigationBar: false});
 
@@ -210,7 +215,27 @@ angular
         //var webView = new steroids.views.WebView("app/orders/show.html?id=" + order_id);
         //steroids.layers.push({view: webView, navigationBar: false});
 
+      }).error(function(result){
+        // Paypal error
+        $scope.errors = "Can't process your payment. Please try again.";
       });
+    };
+
+    $scope.removeFromBag = function(orderItem) {
+
+      var index = $localStorage.user.items.indexOf(orderItem);
+      if(index > -1) {
+        $localStorage.user.items.splice(index, 1);
+        $scope.orderTotal = $scope.sum($localStorage.user.items, 'subtotal');
+
+        if($scope.orderTotal == 0) {
+          $localStorage.user.items = [];
+          steroids.layers.pop();
+          var webView = new steroids.views.WebView("app/menus/show.html?id=" + $localStorage.user.data["chain_id"]);
+          steroids.layers.push({view: webView, navigationBar: false});
+        }
+
+      }
     };
 
     $scope.goBack = function() {

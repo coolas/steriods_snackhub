@@ -19,6 +19,13 @@ angular
   	}), function(resp){
   		return console.log("error", resp);
   	});
+
+    $scope.showAccount = function() {
+      var webView = new steroids.views.WebView("app/account/account.html");
+      steroids.layers.push({view: webView, navigationBar: false});
+      return;
+    };
+
   	// Fetch menuItem given the id (API)
  //  	$scope.orderId = {
 	// 	"id": 1,

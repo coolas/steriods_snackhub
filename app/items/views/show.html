@@ -2,11 +2,12 @@
   <div class="bar bar-header bar-assertive">
       <button class="button button-icon icon super-chevron-left" ng-click="goBack()"></button>
       <div class="h1 title">{{item.name}}</div>
+      <button class="button button-icon icon super-ion-person" ng-click="showAccount()"></button>
   </div>
   <div class="content has-header">
     <div class="list card">
       <div class="item">
-        <img class="full-image" src="https://vast-stream-69053.herokuapp.com{{item.item_image.url}}">
+        <img class="full-image" src="{{item.item_image.url}}">
       </div>
 
       <div class="item item-body">

@@ -27,14 +27,20 @@ angular
   		return;
   	};
 
-    $scope.goBack = function() {
-      steroids.layers.pop();
-      return;
-    };
-
     $scope.checkout = function() {
       var webView = new steroids.views.WebView("app/orders/new.html");
       steroids.layers.push({view: webView, navigationBar: false});
+      return;
+    };
+
+    $scope.showAccount = function() {
+      var webView = new steroids.views.WebView("app/account/account.html");
+      steroids.layers.push({view: webView, navigationBar: false});
+      return;
+    };
+
+    $scope.goBack = function() {
+      steroids.layers.pop();
       return;
     };
 
