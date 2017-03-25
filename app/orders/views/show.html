@@ -4,12 +4,13 @@
       <button class="button button-icon icon super-ion-person" ng-click="showAccount()"></button>
  	</div>
  	<div class="content has-header">
- 		<p>{{order.reference_number}}</p>
- 		<p>{{order.total}}</p>
+ 		<p>Reference Number: {{order.reference_number}}</p>
 
- 		<p>{{order.cinema_number}}</p>
- 		<p>{{order.remarks}}</p>
- 		<p>{{order.contact_number}}</p>
+ 		<p>Total: {{order.total}}</p>
+
+ 		<p>Cinema Number: {{order.cinema_number}}</p>
+ 		<p>Remarks: {{order.remarks}}</p>
+ 		<p>Contact Number: {{order.contact_number}}</p>
 
  		 <div class="row" ng-repeat="item in order_items">
 				<div class="col">
