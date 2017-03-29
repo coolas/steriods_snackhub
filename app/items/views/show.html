@@ -19,7 +19,7 @@
       <div class="item">
         <label class="item item-input">
           <span class="input-label">Quantity</span>
-          <input class="pull-right" type="number" ng-model="item.quantity" placeholder="0">
+          <input class="pull-right" type="number" inputmode="numeric" ng-model="item.quantity" min=0 ng-minlength="0" pattern="[0-9]*" placeholder="1">
         </label>
       </div>
 
@@ -28,7 +28,7 @@
       </div>
 
       <div class="item">
-        <button class="button button-block button-assertive" ng-click="addToBag(item.id, item.quantity, item.price * item.quantity, item.name, item.menu_id)">
+        <button class="button button-block button-assertive" ng-click="addToBag(item.id, item.quantity, item.price * item.quantity, item.name, item.menu_id)" type="button" ng-disabled="item.quantity < 1">
           Add to Bag
         </button>
       </div>

@@ -6,7 +6,6 @@ angular
   	// Fetch Order given the id (API)
   	OrderService.fetchOrder(orderId).then((function(resp){
       $scope.order = resp;
-      alert(JSON.stringify(resp));
   	  return $scope.order;
   	}), function(resp){
   		return console.log("error", resp);
@@ -23,6 +22,11 @@ angular
     $scope.showAccount = function() {
       var webView = new steroids.views.WebView("app/account/account.html");
       steroids.layers.push({view: webView, navigationBar: false});
+      return;
+    };
+
+    $scope.goBack = function() {
+      steroids.layers.pop();
       return;
     };
 

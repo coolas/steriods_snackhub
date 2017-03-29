@@ -113,7 +113,7 @@
 
 	<div class="bar bar-footer bar-assertive" ng-show="showCinema">
 		<div class="button-bar">
-			<button class="button button-clear" ng-click="proceedToPayment()">Proceed to Payment</button>
+			<button class="button button-clear" ng-disabled="(order.cinema_number == null || order.cinema_number == '') || (order.contact_number == null || order.contact_number == '')" ng-click="proceedToPayment()">Proceed to Payment</button>
 		</div>
 	</div>
 
