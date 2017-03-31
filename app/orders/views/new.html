@@ -102,6 +102,11 @@
 			<div class="item">
 				<input type="text" placeholder="Credit Card Holder Last Name" ng-model="payment.last_name">
 			</div>
+			 	<div class="item" ng-show="showPayment">
+					<div class="button-bar">
+						<button class="button button-clear" ng-click="makePayment()">Pay Now</button>
+					</div>
+				</div>
 	 	</div>
 	</div>
 
@@ -117,9 +122,5 @@
 		</div>
 	</div>
 
-	<div class="item" ng-show="showPayment">
-		<div class="button-bar">
-			<button class="button button-clear" ng-click="makePayment()">Pay Now</button>
-		</div>
-	</div>
+	
 </div>
