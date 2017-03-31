@@ -22,6 +22,13 @@ angular
 	      steroids.layers.pop();
 	      return;
 	    };
-		
+
+
+		$scope.showChains = function(id) {
+    		var webView = new steroids.views.WebView("app/chains/index.html?id=" + id);
+    		steroids.layers.push({view: webView, navigationBar: false});
+    		return;
+    	};
+
 		
 	});

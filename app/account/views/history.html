@@ -6,7 +6,8 @@
 	<div class="content has-header">
 		<div class="list">
 			<a class="item" ng-repeat="order in orders" ng-click="showOrder(order.id)">
-				<h2>{{order.reference_number}}</h2>
+				<h2>Date and Time: {{order.created_at | date:'medium'}}</h2>
+				
 			</a>
 		</div>
 	</div>
