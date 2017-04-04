@@ -7,7 +7,8 @@ angular
   		supersonic,
   		OrderService,
       OrderItemService, 
-  		MallService){
+  		MallService,
+      $ionicLoading){
 
     $scope.errors = "";
 
@@ -93,6 +94,9 @@ angular
     }
 
     $scope.makePayment = function() {
+      $ionicLoading.show({
+        template: 'Loading...',
+      });
       $http({
         method: 'POST',
         url: 'https://api.sandbox.paypal.com/v1/payments/payment',
@@ -161,8 +165,10 @@ angular
         //   }]
         //},
       }).success(function (result) {
-        
+         
         console.log(JSON.stringify(result));
+        $ionicLoading.hide();
+       
 
         $scope.order.total = $scope.orderTotal;
 
@@ -218,6 +224,7 @@ angular
       }).error(function(result){
         // Paypal error
         $scope.errors = "Can't process your payment. Please try again.";
+        $ionicLoading.hide();
       });
     };
 

@@ -81,7 +81,15 @@
 			</div>
 
 			<div class="item">
-				<input type="text" placeholder="Credit Card Type" ng-model="payment.credit_card_type">
+				<div class ="input-label">
+				Credit Card Type
+			
+				</div>
+				<select ng-model="payment.credit_card_type">
+				<option>Master Card</option>
+				<option selected>visa</option>
+				<option>Jcb</option>
+				</select>
 			</div>
 
 			<div class="item">
@@ -104,7 +112,7 @@
 			</div>
 			 	<div class="item" ng-show="showPayment">
 					<div class="button-bar">
-						<button class="button button-clear" ng-click="makePayment()">Pay Now</button>
+						<button class="button button-assertive" ng-click="makePayment()">Pay Now</button>
 					</div>
 				</div>
 	 	</div>
