@@ -57,6 +57,15 @@
 				<input type="text" placeholder="Cinema Number" ng-model="order.cinema_number">
 			</div>
 			<div class="item">
+				 <div class="input-label">
+      				Payment Method
+    			</div>
+    			<select ng-model="order.payment_method">
+      				<option value="1">Credit Card</option>
+      				<option value="0" selected>Snackhub Credit</option>
+    			</select>
+    			</div>
+			<div class="item">
 				<input type="text" placeholder="Remarks" ng-model="order.remarks">
 			</div>
 			<div class="item">
@@ -70,8 +79,11 @@
 	      <button class="button button-icon icon super-chevron-left" ng-click="proceedToCinema()"></button>
 	      <div class="h1 title">Enter Payment Details</div>
 	 	</div>
+	 	<div class="content has-header" ng-if="order.payment_method == 0">
+	 		<h1>{{orderTotal}} will be deducted from your account</h1>
+	 	</div>
 
-	 	<div class="content has-header">
+	 	<div class="content has-header" ng-if="order.payment_method == 1">
 	 		<div class="item " ng-if="errors">
 	 			<h4 class="assertive text-center">{{errors}}</h4>
 	 		</div>
@@ -116,6 +128,8 @@
 					</div>
 				</div>
 	 	</div>
+
+
 	</div>
 
 	<div class="bar bar-footer bar-assertive" ng-show="showCheckout && orderTotal > 0">

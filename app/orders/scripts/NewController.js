@@ -51,6 +51,11 @@ angular
       return;
     };
 
+    $scope.isBalanceEnough = function() {
+       if($localStorage.user.balance >= $scope.orderTotal) { return true; } else { return false; }
+
+    };
+
     $scope.showAccount = function() {
       var webView = new steroids.views.WebView("app/account/account.html");
       steroids.layers.push({view: webView, navigationBar: false});
@@ -97,7 +102,8 @@ angular
       $ionicLoading.show({
         template: 'Loading...',
       });
-      $http({
+
+      if(order.payment_method == 1) { $http({
         method: 'POST',
         url: 'https://api.sandbox.paypal.com/v1/payments/payment',
         headers: {
@@ -225,7 +231,59 @@ angular
         // Paypal error
         $scope.errors = "Can't process your payment. Please try again.";
         $ionicLoading.hide();
-      });
+      });   }
+      else {           
+       
+        console.log(JSON.stringify(result));
+        $ionicLoading.hide();
+       
+
+        $scope.order.total = $scope.orderTotal;
+        $localStorage.user.balance -= $scope.orderTotal
+
+        OrderService.createOrder($scope.order).then((function(resp){
+        //OrderRestangular.one('api/orders').customPOST(order).then((function(resp){
+          //var order_id = 1
+          var items = $localStorage.user.items;
+
+          // for(var item in $localStorage.user.items){
+          //   alert(JSON.stringify(item));
+          //   var order_item_entry = {
+          //     order_id: resp.id,
+          //     item_id: item.id,
+          //     quantity: item.quantity,
+          //     subtotal: item.subtotal,
+          //     name: item.name
+          //   }
+          //   OrderItemService.createOrderItem(order_item_entry).then((function(resp){
+
+          //   }), function(resp){
+          //   });
+          // }
+          for(var i = 0; i < items.length; i++) {
+            var order_item_entry = {
+              order_id: resp.id,
+              item_id: items[i]["id"],
+              quantity: items[i]["quantity"],
+              subtotal: items[i]["subtotal"],
+              name: items[i]["name"]
+            }
+            OrderItemService.createOrderItem(order_item_entry).then((function(resp){
+
+            }), function(resp){
+              // error
+            });
+          }
+
+
+          $localStorage.user.items = [];
+          $scope.errors = [];
+          var webView = new steroids.views.WebView("app/orders/show.html?id=" + resp.id);
+          steroids.layers.push({view: webView, navigationBar: false});
+
+        }), function(resp){
+          // error
+        });          }
     };
 
     $scope.removeFromBag = function(orderItem) {
