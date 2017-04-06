@@ -16,7 +16,7 @@ module.factory('AuthService', function(Restangular, $localStorage, $ionicLoading
 				$localStorage.user = resp;
 				// initialize order items
 				$localStorage.user.items = [];
-				$localStorage.user.balance = 1000;
+				
 				
 
 				if($localStorage.user.confirmed_at !== null){

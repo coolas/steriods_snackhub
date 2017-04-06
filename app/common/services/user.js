@@ -9,6 +9,9 @@ module.factory("UserService", function(UserRestangular){
 		}, 
 		register: function(user){
 			return UserRestangular.one("api/auth/register").customPOST();
+		},
+		updateUser: function(user){
+			return UserRestangular.one("api/users/" + user.id).customPUT(user);
 		}
 
 	}

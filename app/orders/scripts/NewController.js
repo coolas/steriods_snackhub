@@ -8,7 +8,8 @@ angular
   		OrderService,
       OrderItemService, 
   		MallService,
-      $ionicLoading){
+      $ionicLoading,
+      UserService){
 
     $scope.errors = "";
 
@@ -43,6 +44,12 @@ angular
 	  }), function(resp){
 		  return console.log("error", resp);
 	  });
+
+    UserService.fetchUser($localStorage.user.data['id']).then((function(resp){
+     return $scope.user = resp; 
+    }), function(resp){ 
+      return console.log("error", resp);
+    });
 
     $scope.showChains = function(id) {
       $localStorage.user.mall_id = id;
@@ -103,7 +110,7 @@ angular
         template: 'Loading...',
       });
 
-      if(order.payment_method == 1) { $http({
+      if($scope.order.payment_method == 1) { $http({
         method: 'POST',
         url: 'https://api.sandbox.paypal.com/v1/payments/payment',
         headers: {
@@ -234,12 +241,21 @@ angular
       });   }
       else {           
        
-        console.log(JSON.stringify(result));
+        
         $ionicLoading.hide();
        
 
         $scope.order.total = $scope.orderTotal;
-        $localStorage.user.balance -= $scope.orderTotal
+        $scope.user.account_balance -= $scope.orderTotal;   
+    
+        UserService.updateUser($scope.user).then((function(resp){
+            
+        }),
+        function(resp){
+          
+         
+
+       });
 
         OrderService.createOrder($scope.order).then((function(resp){
         //OrderRestangular.one('api/orders').customPOST(order).then((function(resp){

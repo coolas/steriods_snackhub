@@ -80,7 +80,14 @@
 	      <div class="h1 title">Enter Payment Details</div>
 	 	</div>
 	 	<div class="content has-header" ng-if="order.payment_method == 0">
+	 		<h1>{{user.account_balance}}</h1>
 	 		<h1>{{orderTotal}} will be deducted from your account</h1>
+
+	 			<div class="item" ng-show="showPayment">
+					<div class="button-bar">
+					<button class="button button-assertive" ng-click="makePayment()">Pay Now</button>
+					</div>
+				</div>
 	 	</div>
 
 	 	<div class="content has-header" ng-if="order.payment_method == 1">
