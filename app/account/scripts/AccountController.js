@@ -30,6 +30,12 @@ angular
 	    };
 
 
+	    $scope.newRedemption = function(){
+			var webView = new steroids.views.WebView("app/redemptions/new.html");
+     	 steroids.layers.push({view: webView, navigationBar: false});
+     	 return;
+		};
+
 	
 
 		

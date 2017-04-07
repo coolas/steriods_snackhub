@@ -10,6 +10,7 @@ angular.module('common', [
   'ItemMethods',
   'OrderMethods',
   'OrderItemMethods',
-  'ngStorage'
+  'ngStorage',
+  'RedemptionMethods'
 ]);
 
